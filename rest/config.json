@@ -1,0 +1,11 @@
+{
+    "connection_file": "connection-org1.json",
+    "appAdmin": "admin",
+    "appAdminSecret": "adminpw",
+    "orgMSPID": "Org1MSP",
+    "caName": "https://localhost:7054",
+    "gatewayDiscovery": {
+        "enabled": true,
+        "asLocalhost": true
+    }
+}
