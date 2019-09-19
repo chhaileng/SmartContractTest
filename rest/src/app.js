@@ -25,6 +25,7 @@ const appAdmin = config.appAdmin;
 app.get('/cars', async (req, res) => {
 	let networkObj = await network.connectToNetwork(appAdmin);
 	let response = await network.invoke(networkObj, true, 'queryCar', '');
+	console.log(response)
 	let parsedResponse = await JSON.parse(response);
 	res.send(parsedResponse);
 });

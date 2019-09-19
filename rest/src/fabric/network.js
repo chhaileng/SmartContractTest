@@ -92,7 +92,7 @@ exports.invoke = async function (networkObj, isQuery, func, args) {
 		// console.log(util.inspect(JSON.parse(args[0])));
 
 		if (isQuery === true) {
-			console.log('inside isQuery');
+			/* console.log('inside isQuery'); */
 
 			if (args) {
 				/* console.log('inside isQuery, args');
