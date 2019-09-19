@@ -41,6 +41,14 @@ app.post('/test', async (req, res) => {
 
 });
 
+app.post('/testmdongteat', async (req, res) => {
+	let networkObj = await network.connectToNetwork(appAdmin);
+	req.body = JSON.stringify(req.body);
+	let args = [req.body];
+	let response = await network.invoke(networkObj, false, 'testmdongteat', args);
+	res.json(await JSON.parse(response));
+});
+
 app.post('/cartest', async (req, res) => {
 	if ((typeof req.body.model === 'undefined' || req.body.model === '') || 
 		(typeof req.body.color === 'undefined' || req.body.color === '') || 
