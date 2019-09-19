@@ -41,7 +41,7 @@ app.post('/test', async (req, res) => {
 
 });
 
-app.post('/cars', async (req, res) => {
+app.post('/cartest', async (req, res) => {
 	if ((typeof req.body.model === 'undefined' || req.body.model === '') || 
 		(typeof req.body.color === 'undefined' || req.body.color === '') || 
 		(typeof req.body.plateNumber === 'undefined' || req.body.plateNumber === '') || 
