@@ -52,12 +52,10 @@ app.post('/cartest', async (req, res) => {
 
 	// chhaileng is user created in wallet
 	let networkObj = await network.connectToNetwork('chhaileng');
-	console.log('util inspecting');
-	console.log(util.inspect(networkObj));
 	req.body = JSON.stringify(req.body);
 	let args = [req.body];
 
-	let response = await network.invoke(networkObj, false, 'test', args);
+	let response = await network.invoke(networkObj, false, 'testnengna', args);
 	if (response.error) {
 		res.json({ status: false, error: response.error });
 	} else {
