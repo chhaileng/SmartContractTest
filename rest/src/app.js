@@ -45,10 +45,8 @@ app.post('/cars', async (req, res) => {
 
 	let response = await network.invoke(networkObj, false, 'createCar', args);
 	if (response.error) {
-		res.send(response.error);
 		res.json({ status: false, error: response.error });
 	} else {
-		res.send(response);
 		res.json({ status: true, car: response });
 	}
 });
