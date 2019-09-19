@@ -57,7 +57,7 @@ exports.connectToNetwork = async function (userName) {
 		// Connect to our local fabric
 		const network = await gateway.getNetwork('mychannel');
 
-		/* console.log('Connected to mychannel. '); */
+		console.log('Connected to mychannel. ');
 		// Get the contract we have installed on the peer
 		const contract = await network.getContract('cc_test_2');
 
