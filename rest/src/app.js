@@ -25,16 +25,39 @@ const appAdmin = config.appAdmin;
 app.get('/cars', async (req, res) => {
 	let networkObj = await network.connectToNetwork(appAdmin);
 	let response = await network.invoke(networkObj, true, 'queryAllCars', '');
-	console.log(response)
 	let parsedResponse = await JSON.parse(response);
-	res.send(parsedResponse);
+	res.json({ status: true, cars: parsedResponse });
+});
+
+app.post('/cars', async (req, res) => {
+	if ((typeof req.body.model === 'undefined' || req.body.model === '') || 
+		(typeof req.body.color === 'undefined' || req.body.color === '') || 
+		(typeof req.body.plateNumber === 'undefined' || req.body.plateNumber === '') || 
+		(typeof req.body.owner === 'undefined' || req.body.owner === '')) { 
+			res.json({ status: false, error: { message: 'Missing body.' } });
+			return;
+	}
+
+	// chhaileng is user created in wallet
+	let networkObj = await network.connectToNetwork('chhaileng');
+	req.body = JSON.stringify(req.body);
+	let args = [req.body];
+
+	let response = await network.invoke(networkObj, false, 'createCar', args);
+	if (response.error) {
+		res.send(response.error);
+		res.json({ status: false, error: response.error });
+	} else {
+		res.send(response);
+		res.json({ status: true, car: response });
+	}
 });
 
 
 
 
 
-// =================================== evot =================================== //
+// =================================== evote =================================== //
 
 //get all assets in world state
 app.get('/queryAll', async (req, res) => {

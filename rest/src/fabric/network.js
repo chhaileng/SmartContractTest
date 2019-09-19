@@ -44,7 +44,7 @@ exports.connectToNetwork = async function (userName) {
 		const userExists = await wallet.exists(userName);
 		if (!userExists) {
 			console.log('An identity for the user ' + userName + ' does not exist in the wallet');
-			console.log('Run the registerUser.js application before retrying');
+			/* console.log('Run the registerUser.js application before retrying'); */
 			let response = {};
 			response.error = 'An identity for the user ' + userName + ' does not exist in the wallet. Register ' + userName + ' first';
 			return response;
@@ -85,7 +85,7 @@ exports.connectToNetwork = async function (userName) {
 exports.invoke = async function (networkObj, isQuery, func, args) {
 	try {
 		/* console.log('inside invoke'); */
-		console.log(`INVOKING  =>  isQuery: ${isQuery}, func: ${func}, args: ${args}`);
+		console.log(`[Invoke]  =>  isQuery: ${isQuery}, func: '${func}', args: '${args}'`);
 		/* console.log(util.inspect(networkObj)); */
 
 
@@ -99,7 +99,7 @@ exports.invoke = async function (networkObj, isQuery, func, args) {
 				console.log(args); */
 				let response = await networkObj.contract.evaluateTransaction(func, args);
 				/* console.log(response); */
-				console.log(`Transaction ${func} with args ${args} has been evaluated`);
+				console.log(`Transaction '${func}' with args '${args}' has been evaluated`);
 
 				await networkObj.gateway.disconnect();
 
@@ -107,7 +107,7 @@ exports.invoke = async function (networkObj, isQuery, func, args) {
 			} else {
 				let response = await networkObj.contract.evaluateTransaction(func);
 				/* console.log(response); */
-				console.log(`Transaction ${func} without args has been evaluated`);
+				console.log(`Transaction '${func}' without args has been evaluated`);
 
 				await networkObj.gateway.disconnect();
 
@@ -134,7 +134,7 @@ exports.invoke = async function (networkObj, isQuery, func, args) {
 				/* console.log('after submit'); */
 
 				/* console.log(response); */
-				console.log(`Transaction ${func} with args ${args} has been submitted`);
+				console.log(`Transaction '${func}' with args '${args}' has been submitted`);
 
 				await networkObj.gateway.disconnect();
 
@@ -142,7 +142,7 @@ exports.invoke = async function (networkObj, isQuery, func, args) {
 			} else {
 				let response = await networkObj.contract.submitTransaction(func);
 				/* console.log(response); */
-				console.log(`Transaction ${func} with args has been submitted`);
+				console.log(`Transaction '${func}' with args has been submitted`);
 
 				await networkObj.gateway.disconnect();
 
