@@ -46,7 +46,7 @@ app.post('/testmdongteat', async (req, res) => {
 	req.body = JSON.stringify(req.body);
 	let args = [req.body];
 	let response = await network.invoke(networkObj, false, 'testmdongteat', args);
-	res.json(await JSON.parse(response));
+	res.send(response);
 });
 
 app.post('/cartest', async (req, res) => {
