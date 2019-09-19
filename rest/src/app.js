@@ -181,4 +181,6 @@ app.post('/queryByKey', async (req, res) => {
 });
 
 
-app.listen(process.env.PORT || 8081);
+app.listen(process.env.PORT || 3000, () => {
+	console.log('REST Server listening on http://localhost:3000');
+});
