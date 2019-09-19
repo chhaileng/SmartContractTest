@@ -29,6 +29,18 @@ app.get('/cars', async (req, res) => {
 	res.json({ status: true, cars: parsedResponse });
 });
 
+app.post('/test', async (req, res) => {
+	if ((typeof req.body.model === 'undefined' || req.body.model === '') || 
+		(typeof req.body.color === 'undefined' || req.body.color === '') || 
+		(typeof req.body.plateNumber === 'undefined' || req.body.plateNumber === '') || 
+		(typeof req.body.owner === 'undefined' || req.body.owner === '')) { 
+			res.json({ status: false, error: { message: 'Missing body.' } });
+			return;
+	}
+
+
+});
+
 app.post('/cars', async (req, res) => {
 	if ((typeof req.body.model === 'undefined' || req.body.model === '') || 
 		(typeof req.body.color === 'undefined' || req.body.color === '') || 
@@ -40,10 +52,12 @@ app.post('/cars', async (req, res) => {
 
 	// chhaileng is user created in wallet
 	let networkObj = await network.connectToNetwork('chhaileng');
+	console.log('util inspecting');
+	console.log(util.inspect(networkObj));
 	req.body = JSON.stringify(req.body);
 	let args = [req.body];
 
-	let response = await network.invoke(networkObj, false, 'createCar', args);
+	let response = await network.invoke(networkObj, false, 'test', args);
 	if (response.error) {
 		res.json({ status: false, error: response.error });
 	} else {
